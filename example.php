@@ -1,13 +1,13 @@
 <?php
 
 use CommandString\Blood\Blood;
-use CommandString\Blood\Enums\Types;
+use CommandString\Blood\Enums\BloodTypes;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 const ITEM_PREFIX = "* ";
 
-$forType = static function (Types $type): void {
+$forType = static function (BloodTypes $type): void {
     $blood = new Blood($type);
     echo "Blood Type: {$blood->getType()->value}\n\n"; // A+
 
@@ -22,14 +22,14 @@ $forType = static function (Types $type): void {
     }
 
     echo "\nCan Donate To:\n";
-    foreach (Types::cases() as $type) {
+    foreach (BloodTypes::cases() as $type) {
         $toReceive = new Blood($type);
 
         echo $blood->canDonate($toReceive) ? ITEM_PREFIX . "{$toReceive->getType()->value}\n" : '';
     }
 
     echo "\nCan Receive From:\n";
-    foreach (Types::cases() as $type) {
+    foreach (BloodTypes::cases() as $type) {
         $toDonate = new Blood($type);
 
         echo $blood->canReceive($toDonate) ? ITEM_PREFIX . "{$toDonate->getType()->value}\n" : '';
@@ -37,7 +37,7 @@ $forType = static function (Types $type): void {
 };
 
 $divider = "-------------------------\n";
-foreach (Types::cases() as $type) {
+foreach (BloodTypes::cases() as $type) {
     echo $divider;
     $forType($type);
 }

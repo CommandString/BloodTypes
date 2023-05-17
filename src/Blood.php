@@ -4,7 +4,7 @@ namespace CommandString\Blood;
 
 use LogicException;
 use CommandString\Blood\Enums\Proteins;
-use CommandString\Blood\Enums\Types;
+use CommandString\Blood\Enums\BloodTypes;
 
 use function in_array;
 
@@ -20,10 +20,10 @@ class Blood
      */
     protected array $antibodies;
 
-    public function __construct(public readonly Types $type)
+    public function __construct(public readonly BloodTypes $type)
     {
-        $this->proteins = Types::getProteinsForType($type);
-        $this->antibodies = Types::getAntiBodiesForTypes($type);
+        $this->proteins = BloodTypes::getProteinsForType($type);
+        $this->antibodies = BloodTypes::getAntiBodiesForTypes($type);
     }
 
     public function hasAntibody(Proteins $protein): bool
@@ -36,8 +36,12 @@ class Blood
         return in_array($protein, $this->proteins);
     }
 
-    public function canReceive(self $blood): bool
+    public function canReceive(self|BloodTypes $blood): bool
     {
+        if ($blood instanceof BloodTypes) {
+            $blood = new self($blood);
+        }
+
         foreach ($this->antibodies as $antibody) {
             if ($blood->hasProtein($antibody)) {
                 return false;
@@ -47,8 +51,12 @@ class Blood
         return true;
     }
 
-    public function canDonate(self $blood): bool
+    public function canDonate(self|BloodTypes $blood): bool
     {
+        if ($blood instanceof BloodTypes) {
+            $blood = new self($blood);
+        }
+
         foreach ($this->proteins as $protein) {
             if ($blood->hasAntibody($protein)) {
                 return false;
@@ -68,15 +76,15 @@ class Blood
         return $this->antibodies;
     }
 
-    public function getType(): Types
+    public function getType(): BloodTypes
     {
         return $this->type;
     }
 
     public static function fromProteins(Proteins ...$proteins): self
     {
-        foreach (Types::cases() as $type) {
-            if ($proteins === Types::getProteinsForType($type)) {
+        foreach (BloodTypes::cases() as $type) {
+            if ($proteins === BloodTypes::getProteinsForType($type)) {
                 return new self($type);
             }
         }
@@ -86,8 +94,8 @@ class Blood
 
     public static function fromAntibodies(Proteins ...$proteins): self
     {
-        foreach (Types::cases() as $type) {
-            if ($proteins === Types::getAntiBodiesForTypes($type)) {
+        foreach (BloodTypes::cases() as $type) {
+            if ($proteins === BloodTypes::getAntiBodiesForTypes($type)) {
                 return new self($type);
             }
         }

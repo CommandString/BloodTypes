@@ -2,7 +2,7 @@
 
 namespace CommandString\Blood\Enums;
 
-enum Types: string
+enum BloodTypes: string
 {
     case A_NEGATIVE = 'A-';
     case A_POSITIVE = 'A+';
