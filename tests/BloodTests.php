@@ -2,6 +2,7 @@
 
 namespace Tests\CommandString\Blood;
 
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use CommandString\Blood\Blood;
 use CommandString\Blood\Enums\Proteins;
@@ -16,9 +17,9 @@ class BloodTests extends TestCase
         $oP = new Blood(BloodType::O_POSITIVE);
 
         $this->assertTrue($oP->canDonate($abP));
-        $this->assertFalse($abP->canDonate($oP));
-        $this->assertTrue($abP->canReceive($oP));
-        $this->assertTrue($abP->canReceive($aN));
+        $this->assertFalse($abP->canDonate($oP->type));
+        $this->assertTrue($abP->canReceive($oP->type));
+        $this->assertFalse($aN->canReceive($abP->type));
     }
 
     public function testCreatingFromProteins(): void
@@ -30,7 +31,7 @@ class BloodTests extends TestCase
         $this->assertEquals(BloodType::AB_POSITIVE, $blood->getType());
 
         $blood = Blood::fromProteins(Proteins::RH);
-        $this->assertEquals(BloodType::O_NEGATIVE, $blood->getType());
+        $this->assertEquals(BloodType::O_POSITIVE, $blood->getType());
     }
 
     public function testCreatingFromAntibodies(): void
@@ -45,9 +46,27 @@ class BloodTests extends TestCase
         $this->assertEquals(BloodType::AB_NEGATIVE, $blood->getType());
     }
 
-    public function testGetProteins(): void
+    public function testGettingProteins(): void
     {
         $blood = new Blood(BloodType::A_POSITIVE);
         $this->assertEquals([Proteins::A, Proteins::RH], $blood->getProteins());
+    }
+
+    public function testGettingAntibodies(): void
+    {
+        $blood = new Blood(BloodType::A_POSITIVE);
+        $this->assertEquals([Proteins::B], $blood->getAntibodies());
+    }
+
+    public function testInvalidProteinCombo(): void
+    {
+        $this->expectException(LogicException::class);
+        Blood::fromProteins(Proteins::A, Proteins::A);
+    }
+
+    public function testInvalidAntibodyCombo(): void
+    {
+        $this->expectException(LogicException::class);
+        Blood::fromAntibodies(Proteins::A, Proteins::A);
     }
 }
