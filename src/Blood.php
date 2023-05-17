@@ -11,7 +11,7 @@ use function in_array;
 class Blood
 {
     /**
-      * @var Proteins[]
+     * @var Proteins[]
      */
     protected array $proteins;
 
