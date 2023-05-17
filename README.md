@@ -3,7 +3,7 @@ A composer package for bloodtypes
 
 # Installation
 
-`composer require commandstring/bloodtypes`
+`composer require commandstring/blood`
 
 # Example Script
 
