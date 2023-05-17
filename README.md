@@ -11,13 +11,13 @@ A composer package for bloodtypes
 <?php
 
 use CommandString\Blood\Blood;
-use CommandString\Blood\Enums\BloodTypes;
+use CommandString\Blood\Enums\BloodType;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 const ITEM_PREFIX = "* ";
 
-$forType = static function (BloodTypes $type): void {
+$forType = static function (BloodType $type): void {
     $blood = new Blood($type);
     echo "Blood Type: {$blood->getType()->value}\n\n"; // A+
 
@@ -32,14 +32,14 @@ $forType = static function (BloodTypes $type): void {
     }
 
     echo "\nCan Donate To:\n";
-    foreach (BloodTypes::cases() as $type) {
+    foreach (BloodType::cases() as $type) {
         $toReceive = new Blood($type);
 
         echo $blood->canDonate($toReceive) ? ITEM_PREFIX . "{$toReceive->getType()->value}\n" : '';
     }
 
     echo "\nCan Receive From:\n";
-    foreach (BloodTypes::cases() as $type) {
+    foreach (BloodType::cases() as $type) {
         $toDonate = new Blood($type);
 
         echo $blood->canReceive($toDonate) ? ITEM_PREFIX . "{$toDonate->getType()->value}\n" : '';
@@ -47,7 +47,7 @@ $forType = static function (BloodTypes $type): void {
 };
 
 $divider = "-------------------------\n";
-foreach (BloodTypes::cases() as $type) {
+foreach (BloodType::cases() as $type) {
     echo $divider;
     $forType($type);
 }
