@@ -104,4 +104,22 @@ class BloodTests extends TestCase
             $blood->getPossibleDonors()
         );
     }
+
+    public function testIsUniversalDonor()
+    {
+        $oNegativeBlood = new Blood(BloodType::O_NEGATIVE);
+        $this->assertTrue($oNegativeBlood->isUniversalDonor());
+
+        $aPositiveBlood = new Blood(BloodType::A_POSITIVE);
+        $this->assertFalse($aPositiveBlood->isUniversalDonor());
+    }
+
+    public function testIsUniversalRecipient()
+    {
+        $abPositiveBlood = new Blood(BloodType::AB_POSITIVE);
+        $this->assertTrue($abPositiveBlood->isUniversalRecipient());
+
+        $oNegativeBlood = new Blood(BloodType::O_NEGATIVE);
+        $this->assertFalse($oNegativeBlood->isUniversalRecipient());
+    }
 }
