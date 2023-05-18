@@ -36,7 +36,7 @@ class Blood
         return in_array($protein, $this->proteins);
     }
 
-    public function canReceive(self|BloodType $blood): bool
+    public function canReceiveFrom(self|BloodType $blood): bool
     {
         if ($blood instanceof BloodType) {
             $blood = new self($blood);
@@ -51,7 +51,7 @@ class Blood
         return true;
     }
 
-    public function canDonate(self|BloodType $blood): bool
+    public function canDonateTo(self|BloodType $blood): bool
     {
         if ($blood instanceof BloodType) {
             $blood = new self($blood);

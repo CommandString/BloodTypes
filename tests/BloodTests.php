@@ -16,10 +16,10 @@ class BloodTests extends TestCase
         $abP = new Blood(BloodType::A_POSITIVE);
         $oP = new Blood(BloodType::O_POSITIVE);
 
-        $this->assertTrue($oP->canDonate($abP));
-        $this->assertFalse($abP->canDonate($oP->type));
-        $this->assertTrue($abP->canReceive($oP->type));
-        $this->assertFalse($aN->canReceive($abP->type));
+        $this->assertTrue($oP->canDonateTo($abP));
+        $this->assertFalse($abP->canDonateTo($oP->type));
+        $this->assertTrue($abP->canReceiveFrom($oP->type));
+        $this->assertFalse($aN->canReceiveFrom($abP->type));
     }
 
     public function testCreatingFromProteins(): void
