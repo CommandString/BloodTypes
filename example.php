@@ -11,7 +11,7 @@ $forType = static function (BloodType $type): void {
     $blood = new Blood($type);
     echo "Blood Type: {$blood->getType()->value}\n\n"; // A+
 
-    echo "Blood Proteins:\n";
+    echo "Blood Protein:\n";
     foreach ($blood->getProteins() as $protein) {
         echo ITEM_PREFIX . "{$protein->value}\n";
     }

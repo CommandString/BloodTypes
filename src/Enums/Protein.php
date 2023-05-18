@@ -2,7 +2,7 @@
 
 namespace CommandString\Blood\Enums;
 
-enum Proteins: string
+enum Protein: string
 {
     case A = 'A';
     case B = 'B';

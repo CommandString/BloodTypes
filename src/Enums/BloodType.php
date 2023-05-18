@@ -17,31 +17,31 @@ enum BloodType: string
     {
         return [
             self::A_NEGATIVE->value => [
-                Proteins::B,
-                Proteins::RH
+                Protein::B,
+                Protein::RH
             ],
             self::A_POSITIVE->value => [
-                Proteins::B
+                Protein::B
             ],
             self::B_NEGATIVE->value => [
-                Proteins::A,
-                Proteins::RH
+                Protein::A,
+                Protein::RH
             ],
             self::B_POSITIVE->value => [
-                Proteins::A
+                Protein::A
             ],
             self::AB_NEGATIVE->value => [
-                Proteins::RH
+                Protein::RH
             ],
             self::AB_POSITIVE->value => [],
             self::O_NEGATIVE->value => [
-                Proteins::A,
-                Proteins::B,
-                Proteins::RH
+                Protein::A,
+                Protein::B,
+                Protein::RH
             ],
             self::O_POSITIVE->value => [
-                Proteins::A,
-                Proteins::B
+                Protein::A,
+                Protein::B
             ],
         ][$type->value];
     }
@@ -50,31 +50,31 @@ enum BloodType: string
     {
         return [
             self::A_NEGATIVE->value => [
-                Proteins::A
+                Protein::A
             ],
             self::A_POSITIVE->value => [
-                Proteins::A,
-                Proteins::RH
+                Protein::A,
+                Protein::RH
             ],
             self::B_NEGATIVE->value => [
-                Proteins::B
+                Protein::B
             ],
             self::B_POSITIVE->value => [
-                Proteins::B,
-                Proteins::RH
+                Protein::B,
+                Protein::RH
             ],
             self::AB_NEGATIVE->value => [
-                Proteins::A,
-                Proteins::B
+                Protein::A,
+                Protein::B
             ],
             self::AB_POSITIVE->value => [
-                Proteins::A,
-                Proteins::B,
-                Proteins::RH
+                Protein::A,
+                Protein::B,
+                Protein::RH
             ],
             self::O_NEGATIVE->value => [],
             self::O_POSITIVE->value => [
-                Proteins::RH
+                Protein::RH
             ],
         ][$type->value];
     }

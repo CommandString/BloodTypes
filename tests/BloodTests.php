@@ -5,7 +5,7 @@ namespace Tests\CommandString\Blood;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use CommandString\Blood\Blood;
-use CommandString\Blood\Enums\Proteins;
+use CommandString\Blood\Enums\Protein;
 use CommandString\Blood\Enums\BloodType;
 
 class BloodTests extends TestCase
@@ -24,49 +24,49 @@ class BloodTests extends TestCase
 
     public function testCreatingFromProteins(): void
     {
-        $blood = Blood::fromProteins(Proteins::A, Proteins::RH);
+        $blood = Blood::fromProteins(Protein::A, Protein::RH);
         $this->assertEquals(BloodType::A_POSITIVE, $blood->getType());
 
-        $blood = Blood::fromProteins(Proteins::A, Proteins::B, Proteins::RH);
+        $blood = Blood::fromProteins(Protein::A, Protein::B, Protein::RH);
         $this->assertEquals(BloodType::AB_POSITIVE, $blood->getType());
 
-        $blood = Blood::fromProteins(Proteins::RH);
+        $blood = Blood::fromProteins(Protein::RH);
         $this->assertEquals(BloodType::O_POSITIVE, $blood->getType());
     }
 
     public function testCreatingFromAntibodies(): void
     {
-        $blood = Blood::fromAntibodies(Proteins::A, Proteins::RH);
+        $blood = Blood::fromAntibodies(Protein::A, Protein::RH);
         $this->assertEquals(BloodType::B_NEGATIVE, $blood->getType());
 
-        $blood = Blood::fromAntibodies(Proteins::A, Proteins::B, Proteins::RH);
+        $blood = Blood::fromAntibodies(Protein::A, Protein::B, Protein::RH);
         $this->assertEquals(BloodType::O_NEGATIVE, $blood->getType());
 
-        $blood = Blood::fromAntibodies(Proteins::RH);
+        $blood = Blood::fromAntibodies(Protein::RH);
         $this->assertEquals(BloodType::AB_NEGATIVE, $blood->getType());
     }
 
     public function testGettingProteins(): void
     {
         $blood = new Blood(BloodType::A_POSITIVE);
-        $this->assertEquals([Proteins::A, Proteins::RH], $blood->getProteins());
+        $this->assertEquals([Protein::A, Protein::RH], $blood->getProteins());
     }
 
     public function testGettingAntibodies(): void
     {
         $blood = new Blood(BloodType::A_POSITIVE);
-        $this->assertEquals([Proteins::B], $blood->getAntibodies());
+        $this->assertEquals([Protein::B], $blood->getAntibodies());
     }
 
     public function testInvalidProteinCombo(): void
     {
         $this->expectException(LogicException::class);
-        Blood::fromProteins(Proteins::A, Proteins::A);
+        Blood::fromProteins(Protein::A, Protein::A);
     }
 
     public function testInvalidAntibodyCombo(): void
     {
         $this->expectException(LogicException::class);
-        Blood::fromAntibodies(Proteins::A, Proteins::A);
+        Blood::fromAntibodies(Protein::A, Protein::A);
     }
 }

@@ -3,7 +3,7 @@
 namespace CommandString\Blood;
 
 use LogicException;
-use CommandString\Blood\Enums\Proteins;
+use CommandString\Blood\Enums\Protein;
 use CommandString\Blood\Enums\BloodType;
 
 use function in_array;
@@ -11,12 +11,12 @@ use function in_array;
 class Blood
 {
     /**
-     * @var Proteins[]
+     * @var Protein[]
      */
     protected array $proteins;
 
     /**
-     * @var Proteins[]
+     * @var Protein[]
      */
     protected array $antibodies;
 
@@ -26,12 +26,12 @@ class Blood
         $this->antibodies = BloodType::getAntiBodiesForTypes($type);
     }
 
-    public function hasAntibody(Proteins $protein): bool
+    public function hasAntibody(Protein $protein): bool
     {
         return in_array($protein, $this->antibodies);
     }
 
-    public function hasProtein(Proteins $protein): bool
+    public function hasProtein(Protein $protein): bool
     {
         return in_array($protein, $this->proteins);
     }
@@ -81,7 +81,7 @@ class Blood
         return $this->type;
     }
 
-    public static function fromProteins(Proteins ...$proteins): self
+    public static function fromProteins(Protein ...$proteins): self
     {
         foreach (BloodType::cases() as $type) {
             if ($proteins === BloodType::getProteinsForType($type)) {
@@ -92,7 +92,7 @@ class Blood
         throw new LogicException('Invalid proteins');
     }
 
-    public static function fromAntibodies(Proteins ...$proteins): self
+    public static function fromAntibodies(Protein ...$proteins): self
     {
         foreach (BloodType::cases() as $type) {
             if ($proteins === BloodType::getAntiBodiesForTypes($type)) {
