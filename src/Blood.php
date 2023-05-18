@@ -76,6 +76,16 @@ class Blood
         return true;
     }
 
+    public function isUniversalDonor(): bool
+    {
+        return $this->type === BloodType::O_NEGATIVE;
+    }
+
+    public function isUniversalRecipient(): bool
+    {
+        return $this->type === BloodType::AB_POSITIVE;
+    }
+
     /**
      * @return BloodType[]
      */
