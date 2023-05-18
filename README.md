@@ -77,29 +77,31 @@ use CommandString\Blood\Enums\BloodType;
 require_once __DIR__ . '/vendor/autoload.php';
 
 const ITEM_PREFIX = "* ";
+const H2 = "\n## ";
+const H3 = "\n### ";
 
 $forType = static function (BloodType $type): void {
     $blood = new Blood($type);
-    echo "Blood Type: {$blood->getType()->value}\n\n"; // A+
+    echo H2 . "Blood Type: {$blood->getType()->value}\n"; // A+
 
-    echo "Blood Protein:\n";
+    echo H3 . "Proteins:\n";
     foreach ($blood->getProteins() as $protein) {
         echo ITEM_PREFIX . "{$protein->value}\n";
     }
 
-    echo "\nBlood Antibodies:\n";
+    echo H3 . "Antibodies:\n";
     foreach ($blood->getAntibodies() as $antibody) {
         echo ITEM_PREFIX . "{$antibody->value}\n";
     }
 
-    echo "\nCan Donate To:\n";
+    echo H3. "Can Donate To:\n";
     foreach (BloodType::cases() as $type) {
         $toReceive = new Blood($type);
 
         echo $blood->canDonateTo($toReceive) ? ITEM_PREFIX . "{$toReceive->getType()->value}\n" : '';
     }
 
-    echo "\nCan Receive From:\n";
+    echo H3 . "Can Receive From:\n";
     foreach (BloodType::cases() as $type) {
         $toDonate = new Blood($type);
 
@@ -107,123 +109,129 @@ $forType = static function (BloodType $type): void {
     }
 };
 
-$divider = "-------------------------\n";
+$divider = "---\n";
 foreach (BloodType::cases() as $type) {
-    echo $divider;
     $forType($type);
+    echo $divider;
 }
-echo $divider;
-```
-
-## Output
 
 ```
--------------------------
-Blood Type: A-
 
-Blood Proteins:
+# Output
+
+## Blood Type: A-
+
+### Proteins:
 * A
 
-Blood Antibodies:
+### Antibodies:
 * B
 * RH
 
-Can Donate To:
+### Can Donate To:
 * A-
 * A+
 * AB-
 * AB+
 
-Can Receive From:
+### Can Receive From:
 * A-
--------------------------
-Blood Type: A+
+* O-
+---
 
-Blood Proteins:
+## Blood Type: A+
+
+### Proteins:
 * A
 * RH
 
-Blood Antibodies:
+### Antibodies:
 * B
 
-Can Donate To:
+### Can Donate To:
 * A+
 * AB+
 
-Can Receive From:
+### Can Receive From:
 * A-
 * A+
 * O-
 * O+
--------------------------
-Blood Type: B-
+---
 
-Blood Proteins:
+## Blood Type: B-
+
+### Proteins:
 * B
 
-Blood Antibodies:
+### Antibodies:
 * A
 * RH
 
-Can Donate To:
+### Can Donate To:
 * B-
 * B+
 * AB-
 * AB+
 
-Can Receive From:
+### Can Receive From:
 * B-
--------------------------
-Blood Type: B+
+* O-
+---
 
-Blood Proteins:
+## Blood Type: B+
+
+### Proteins:
 * B
 * RH
 
-Blood Antibodies:
+### Antibodies:
 * A
 
-Can Donate To:
+### Can Donate To:
 * B+
 * AB+
 
-Can Receive From:
+### Can Receive From:
 * B-
 * B+
 * O-
 * O+
--------------------------
-Blood Type: AB-
+---
 
-Blood Proteins:
+## Blood Type: AB-
+
+### Proteins:
 * A
 * B
 
-Blood Antibodies:
+### Antibodies:
 * RH
 
-Can Donate To:
+### Can Donate To:
 * AB-
 * AB+
 
-Can Receive From:
+### Can Receive From:
 * A-
 * B-
 * AB-
--------------------------
-Blood Type: AB+
+* O-
+---
 
-Blood Proteins:
+## Blood Type: AB+
+
+### Proteins:
 * A
 * B
 * RH
 
-Blood Antibodies:
+### Antibodies:
 
-Can Donate To:
+### Can Donate To:
 * AB+
 
-Can Receive From:
+### Can Receive From:
 * A-
 * A+
 * B-
@@ -232,42 +240,46 @@ Can Receive From:
 * AB+
 * O-
 * O+
--------------------------
-Blood Type: O-
+---
 
-Blood Proteins:
-* RH
+## Blood Type: O-
 
-Blood Antibodies:
+### Proteins:
+
+### Antibodies:
 * A
 * B
 * RH
 
-Can Donate To:
+### Can Donate To:
+* A-
 * A+
+* B-
 * B+
+* AB-
 * AB+
-* O+
-
-Can Receive From:
--------------------------
-Blood Type: O+
-
-Blood Proteins:
-* RH
-
-Blood Antibodies:
-* A
-* B
-
-Can Donate To:
-* A+
-* B+
-* AB+
-* O+
-
-Can Receive From:
 * O-
 * O+
--------------------------
-```
+
+### Can Receive From:
+* O-
+---
+
+## Blood Type: O+
+
+### Proteins:
+* RH
+
+### Antibodies:
+* A
+* B
+
+### Can Donate To:
+* A+
+* B+
+* AB+
+* O+
+
+### Can Receive From:
+* O-
+* O+
