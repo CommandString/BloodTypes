@@ -20,6 +20,16 @@ class Blood
      */
     protected array $antibodies;
 
+    /**
+     * @var BloodType[]
+     */
+    protected array $possibleDonors;
+
+    /**
+     * @var BloodType[]
+     */
+    protected array $possibleRecipients;
+
     public function __construct(public readonly BloodType $type)
     {
         $this->proteins = BloodType::getProteinsForType($type);
@@ -64,6 +74,40 @@ class Blood
         }
 
         return true;
+    }
+
+    /**
+     * @return BloodType[]
+     */
+    public function getPossibleDonors(): array
+    {
+        if (!isset($this->possibleDonors)) {
+            $this->possibleDonors = [];
+            foreach (BloodType::cases() as $type) {
+                if ($this->canReceiveFrom($type)) {
+                    $this->possibleDonors[] = $type;
+                }
+            }
+        }
+
+        return $this->possibleDonors;
+    }
+
+    /**
+     * @return BloodType[]
+     */
+    public function getPossibleRecipients(): array
+    {
+        if (!isset($this->possibleRecipients)) {
+            $this->possibleRecipients = [];
+            foreach (BloodType::cases() as $type) {
+                if ($this->canDonateTo($type)) {
+                    $this->possibleRecipients[] = $type;
+                }
+            }
+        }
+
+        return $this->possibleRecipients;
     }
 
     public function getProteins(): array

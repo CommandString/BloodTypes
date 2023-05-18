@@ -69,4 +69,39 @@ class BloodTests extends TestCase
         $this->expectException(LogicException::class);
         Blood::fromAntibodies(Protein::A, Protein::A);
     }
+
+    public function testPossibleRecipients(): void
+    {
+        $blood = new Blood(BloodType::A_POSITIVE);
+        $this->assertEquals(
+            [
+                BloodType::A_POSITIVE,
+                BloodType::AB_POSITIVE,
+            ],
+            $blood->getPossibleRecipients()
+        );
+
+        $blood = new Blood(BloodType::O_NEGATIVE);
+        $this->assertEquals(
+            BloodType::cases(),
+            $blood->getPossibleRecipients()
+        );
+    }
+
+    public function testPossibleDonors(): void
+    {
+        $blood = new Blood(BloodType::O_NEGATIVE);
+        $this->assertEquals(
+            [
+                BloodType::O_NEGATIVE,
+            ],
+            $blood->getPossibleDonors()
+        );
+
+        $blood = new Blood(BloodType::AB_POSITIVE);
+        $this->assertEquals(
+            BloodType::cases(),
+            $blood->getPossibleDonors()
+        );
+    }
 }
