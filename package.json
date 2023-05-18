@@ -1,0 +1,19 @@
+{
+    "dependencies": {
+        "core-js": "^3.30.1",
+        "fomantic-ui": "^2.9.2",
+        "jquery": "^3.6.4",
+        "sass-embedded": "^1.62.0",
+        "sass-loader": "^13.2.2",
+        "@symfony/webpack-encore": "^4.2.0"
+    },
+    "scripts": {
+        "php-dev": "php -S localhost:8000 Public/index.php",
+        "assets-dev": "npx encore dev --watch",
+        "assets-prod": "npx encore production",
+        "install-packages": "npm i && composer i",
+        "update-packages": "npm update && composer u",
+        "copy-dev-env": "cp .env.dev.example .env",
+        "copy-prod-env": "cp .env.prod.example .env"
+    }
+}

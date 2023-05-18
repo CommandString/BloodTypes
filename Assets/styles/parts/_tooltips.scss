@@ -1,0 +1,26 @@
+@import '../colors';
+
+$tooltips: $custom_colors;
+
+@each $hex, $name in $tooltips {
+    $background-color: $hex;
+    $border-color: darken($background-color, $amount: 5%);
+    $color: #fff;
+
+    [data-tooltip] {
+        &::after {
+            background-color: $background-color;
+            transition: inherit;
+            border-color: $border-color;
+            color: $color;
+        }
+
+        &::before {
+            transition: inherit;
+            background-color: $border-color !important;
+            border-color: $background-color;
+        }
+
+        transition: 0.3s;
+    }
+}

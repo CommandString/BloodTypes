@@ -1,0 +1,28 @@
+{
+    "require": {
+        "php": "^8.1",
+        "httpsoft/http-message": "^1.0",
+        "httpsoft/http-server-request": "^1.0",
+        "twig/twig": "^3.5",
+        "httpsoft/http-response": "^1.0",
+        "tnapf/router": "dev-refactor-controllers",
+        "commandstring/blood": "^2.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Common\\": "./Common",
+            "Controllers\\": "./Controllers",
+            "Twig\\": "./Twig"
+        },
+        "files": [
+            "./Common/Helpers.php"
+        ]
+    },
+    "scripts": {
+        "cs": "./vendor/bin/phpcs --standard=PSR12 ./Common ./Controllers ./App",
+        "csf": "./vendor/bin/phpcbf --standard=PSR12 ./Common ./Controllers ./App"
+    }
+}

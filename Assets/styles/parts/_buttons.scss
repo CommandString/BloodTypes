@@ -1,0 +1,124 @@
+@import "../colors";
+
+$buttons: $custom_colors;
+
+.ui.spaced.buttons .button {
+    & + .button {
+        margin-left: 5px;
+    }
+}
+
+@each $hex, $name in $buttons {
+    $button-color: $hex;
+    $hover-color: darken($button-color, $amount: 5%);
+    $active-color: darken($button-color, $amount: 10%);
+    $focus-color: $active-color;
+
+    $inverted-button-color: lighten($hex, $amount: 10%);
+    $inverted-hover-color: darken($inverted-button-color, $amount: 5%);
+    $inverted-active-color: darken($inverted-button-color, $amount: 10%);
+    $inverted-focus-color: $inverted-active-color;
+
+
+    .ui.#{$name}.buttons .button,
+    .ui.#{$name}.button {
+        background-color: $button-color;
+        color: #fff;
+        text-shadow: none;
+        background-image: none;
+        box-shadow: 0 0 0 0 rgba(34, 36, 38, 0.15) inset;
+
+        &:focus {
+            background-color: $focus-color;
+            color: #fff;
+            text-shadow: none;
+        }
+
+        &:active,
+        &.active,
+        &.active:active {
+            background-color: $active-color;
+            color: #fff;
+            text-shadow: none;
+        }
+
+        &:hover {
+            background-color: $hover-color;
+            color: #fff;
+            text-shadow: none;
+        }
+    }
+
+    .ui.basic.#{$name}.buttons .button,
+    .ui.basic.#{$name}.button {
+        background: transparent;
+        box-shadow: 0 0 0 1px $button-color inset;
+        color: $button-color;
+
+        &:hover {
+            background: transparent;
+            box-shadow: 0 0 0 1px $hover-color inset;
+            color: $hover-color;
+        }
+
+        &:focus {
+            background: transparent;
+            box-shadow: 0 0 0 1px $focus-color inset;
+            color: $focus-color;
+        }
+
+        &:active,
+        &.active,
+        &.active:active {
+            background: transparent;
+            box-shadow: 0 0 0 1px $active-color inset;
+            color: $active-color;
+        }
+    }
+
+    .ui.inverted.#{$name}.buttons .button,
+    .ui.inverted.#{$name}.button {
+        background-color: transparent;
+        box-shadow: 0 0 0 2px inset;
+        color: $inverted-button-color;
+
+        &:focus {
+            background-color: $inverted-focus-color;
+        }
+
+        &:active,
+        &.active,
+        &.active:active {
+            background-color: $inverted-active-color;
+        }
+
+        &:hover {
+            background-color: $inverted-hover-color;
+        }
+    }
+
+    .ui.inverted.#{$name}.basic.buttons .button,
+    .ui.inverted.#{$name}.buttons .basic.button,
+    .ui.inverted.#{$name}.basic.button {
+        background-color: transparent;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5) inset;
+        color: #fff;
+
+        &:hover {
+            box-shadow: 0 0 0 2px $inverted-hover-color inset;
+            color: $inverted-hover-color;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 2px $inverted-focus-color inset;
+            color: $inverted-focus-color;
+        }
+
+        &:active,
+        &.active,
+        &.active:active {
+            box-shadow: 0 0 0 2px $inverted-active-color inset;
+            color: $inverted-active-color;
+        }
+    }
+}

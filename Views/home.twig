@@ -1,0 +1,136 @@
+{% extends "templates/base.twig" %}
+
+{% block head %}
+    <title>CommandString/Blood</title>
+    {{ entrypoint('home')|raw }}
+{% endblock %}
+
+{% block body %}
+    <div id="hero" class="ui inverted attached segment">
+        <div class="ui wide container">
+            <div class="ui inverted big center aligned icon header">
+                <div class="content">
+                    CommandString/Blood
+                    <div class="sub header">A composer package for handling blood types</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui section inverted attached segment">
+        <div class="ui wide container">
+            <div class="ui massive inverted header">Examples</div>
+
+            <div class="ui inverted header">Compatibility Between Two Types</div>
+            <div id="compatibility-one" class="ui inverted form">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Blood Type 1</label>
+                        <div class="ui selection dropdown one">
+                            <input type="hidden">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Blood Type</div>
+                            <div class="menu">
+                                {% for blood in get_all_blood_types() %}
+                                    <div class="item" data-value="{{ blood.type.value }}">{{ blood.type.value }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Blood Type 2</label>
+                        <div class="ui selection dropdown two">
+                            <input type="hidden">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Blood Type</div>
+                            <div class="menu">
+                                {% for blood in get_all_blood_types() %}
+                                    <div class="item" data-value="{{ blood.type.value }}">{{ blood.type.value }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui message">
+                    <div class="ui header">Compatibility</div>
+                    <div class="ui large list">
+                        Choose two blood types to get results...
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui divider"></div>
+
+            <div class="ui inverted header">Donors and Recipients for a Type</div>
+            <div id="compatibility-two" class="ui inverted form">
+                <div class="field">
+                    <label>Blood Type</label>
+                    <div class="ui selection dropdown">
+                        <input type="hidden">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Blood Type</div>
+                        <div class="menu">
+                            {% for blood in get_all_blood_types() %}
+                                <div class="item" data-value="{{ blood.type.value }}">{{ blood.type.value }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui equal width grid">
+                    <div class="column">
+                        <div class="ui message">
+                            <div class="ui centered header">Possible Donors</div>
+                            <div class="ui large donors list">
+                                Choose a blood type to get results...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui message">
+                            <div class="ui centered header">Possible Recipients</div>
+                            <div class="ui large recipients list">
+                                Choose a blood type to get results...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui inverted header">Properties for a Type</div>
+            <div id="properties" class="ui inverted form">
+                <div class="field">
+                    <label>Blood Type</label>
+                    <div class="ui selection dropdown">
+                        <input type="hidden">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Blood Type</div>
+                        <div class="menu">
+                            {% for blood in get_all_blood_types() %}
+                                <div class="item" data-value="{{ blood.type.value }}">{{ blood.type.value }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui equal width grid">
+                    <div class="column">
+                        <div class="ui message">
+                            <div class="ui centered header">Proteins</div>
+                            <div class="ui large proteins list">
+                                Choose a blood type to get results...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui message">
+                            <div class="ui centered header">Antibodies</div>
+                            <div class="ui large antibodies list">
+                                Choose a blood type to get results...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

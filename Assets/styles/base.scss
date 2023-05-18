@@ -1,0 +1,9 @@
+@import "parts/footer";
+@import "parts/navigation";
+@import "parts/tooltips";
+@import "parts/buttons";
+
+#main {
+    min-height: 75vh !important;
+    background: $blackInverted;
+}

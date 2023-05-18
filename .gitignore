@@ -1,0 +1,7 @@
+vendor/
+.env*
+node_modules/
+public/assets
+!.env.*.example
+package-lock.json
+.idea/

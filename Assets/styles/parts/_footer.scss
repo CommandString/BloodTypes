@@ -1,0 +1,24 @@
+@import "../colors";
+
+#footer {
+    padding: 2em 0em;
+    background: $blackInverted;
+
+    .grid > .column {
+        min-height: 200px;
+    }
+
+    h4.header {
+        font-size: 1.6em;
+    }
+
+    input {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .button {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+}
