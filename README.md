@@ -5,6 +5,67 @@ A composer package for bloodtypes
 
 `composer require commandstring/blood`
 
+# Usage
+
+## Creating Blood
+
+You can either create a blood object with **proteins**, **antibodies**, or **type**
+
+```php
+use CommandString\Blood\Blood;
+use CommandString\Blood\Enums\BloodType;
+use CommandString\Blood\Enums\Protein;
+
+$bloodFromType       = new Blood(BloodType::A_POSITIVE);
+$bloodFromProteins   = Blood::fromProteins(Protein::A, Protein::RH);
+$bloodFromAntibodies = Blood::fromAntibodies(Antibody::B, Antibody::RH);
+```
+
+## Checking compatibility between blood types
+
+```php
+use CommandString\Blood\Blood;
+use CommandString\Blood\Enums\BloodType;
+use CommandString\Blood\Enums\Protein;
+
+$bloodType1 = new Blood(BloodType::A_POSITIVE);
+$bloodType2 = new Blood(BloodType::O_NEGATIVE);
+
+$bloodType1->canDonateTo($bloodType2); // false
+$bloodType1->canReceiveFrom($bloodType2); // true
+$bloodType2->canDonateTo($bloodType1); // true
+$bloodType2->canReceiveFrom($bloodType1); // false
+```
+
+## Getting Proteins and Antibodies
+
+```php
+use CommandString\Blood\Enums\Protein;
+
+/** 
+ * @var \CommandString\Blood\Blood $bloodType1 
+ * @var Protein[] $proteins
+ * @var Protein[] $antibodies
+ */
+$proteins = $bloodType1->getProteins();
+$antibodies = $bloodType1->getAntibodies();
+````
+
+## Getting Type
+
+```php
+use CommandString\Blood\Enums\BloodType;
+
+/** 
+ * @var \CommandString\Blood\Blood $bloodType1 
+ * @var BloodType $type
+ */
+$type = $bloodType1->getType();
+$type = $bloodType1->type; 
+```
+
+---
+
 # Example Script
 
 ```php
@@ -21,7 +82,7 @@ $forType = static function (BloodType $type): void {
     $blood = new Blood($type);
     echo "Blood Type: {$blood->getType()->value}\n\n"; // A+
 
-    echo "Blood Proteins:\n";
+    echo "Blood Protein:\n";
     foreach ($blood->getProteins() as $protein) {
         echo ITEM_PREFIX . "{$protein->value}\n";
     }
@@ -35,14 +96,14 @@ $forType = static function (BloodType $type): void {
     foreach (BloodType::cases() as $type) {
         $toReceive = new Blood($type);
 
-        echo $blood->canDonate($toReceive) ? ITEM_PREFIX . "{$toReceive->getType()->value}\n" : '';
+        echo $blood->canDonateTo($toReceive) ? ITEM_PREFIX . "{$toReceive->getType()->value}\n" : '';
     }
 
     echo "\nCan Receive From:\n";
     foreach (BloodType::cases() as $type) {
         $toDonate = new Blood($type);
 
-        echo $blood->canReceive($toDonate) ? ITEM_PREFIX . "{$toDonate->getType()->value}\n" : '';
+        echo $blood->canReceiveFrom($toDonate) ? ITEM_PREFIX . "{$toDonate->getType()->value}\n" : '';
     }
 };
 
