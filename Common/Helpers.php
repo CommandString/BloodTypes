@@ -4,7 +4,6 @@ namespace Common;
 
 use CommandString\Blood\Enums\BloodType;
 use CommandString\Utils\ArrayUtils;
-use Common\Env;
 use Common\Exceptions\InvalidBloodType;
 use HttpSoft\Response\HtmlResponse;
 use function strtoupper;

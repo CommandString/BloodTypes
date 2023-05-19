@@ -12,7 +12,6 @@ use Tnapf\Router\Interfaces\ControllerInterface;
 use Tnapf\Router\Routing\RouteRunner;
 
 use function Common\bloodTypeThrowFrom;
-use function strtoupper;
 
 class Recipients implements ControllerInterface
 {

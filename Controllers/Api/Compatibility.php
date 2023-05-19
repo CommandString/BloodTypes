@@ -3,7 +3,6 @@
 namespace Controllers\Api;
 
 use CommandString\Blood\Blood;
-use CommandString\Blood\Enums\BloodType;
 use Common\Exceptions\InvalidBloodType;
 use HttpSoft\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -11,7 +10,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Tnapf\Router\Interfaces\ControllerInterface;
 use Tnapf\Router\Routing\RouteRunner;
 
-use function strtoupper;
+use function Common\bloodTypeThrowFrom;
 
 class Compatibility implements ControllerInterface
 {
