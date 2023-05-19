@@ -5,3 +5,4 @@ public/assets
 !.env.*.example
 package-lock.json
 .idea/
+.phpunit.*
