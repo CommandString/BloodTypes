@@ -25,7 +25,7 @@ Encore
 ;
 
 for (let entry in ENTRIES) {
-    Encore.addEntry(ENTRIES[entry], `./assets/${ENTRIES[entry]}.js`);
+    Encore.addEntry(ENTRIES[entry], `./Assets/${ENTRIES[entry]}.js`);
 }
 
 module.exports = Encore.getWebpackConfig();
