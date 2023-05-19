@@ -1,4 +1,6 @@
 {
+    "name": "commandstring/blood-gui",
+    "description": "A simple GUI example using CommandString/Blood",
     "require": {
         "php": "^8.1",
         "httpsoft/http-message": "^1.0",

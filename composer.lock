@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9553676f9a60d3f661b730235302d344",
+    "content-hash": "a9c295139e5ab79bfd503acfdac65e6a",
     "packages": [
         {
             "name": "commandstring/blood",
