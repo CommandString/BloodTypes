@@ -136,7 +136,14 @@ foreach (BloodType::cases() as $type) {
 
 ### Can Receive From:
 * A-
-* O-
+* A+
+* AB-
+* AB+
+
+### Is Universal Donor: No
+
+### Is Universal Recipient: No
+
 ---
 
 ## Blood Type: A+
@@ -153,10 +160,13 @@ foreach (BloodType::cases() as $type) {
 * AB+
 
 ### Can Receive From:
-* A-
 * A+
-* O-
-* O+
+* AB+
+
+### Is Universal Donor: No
+
+### Is Universal Recipient: No
+
 ---
 
 ## Blood Type: B-
@@ -176,7 +186,14 @@ foreach (BloodType::cases() as $type) {
 
 ### Can Receive From:
 * B-
-* O-
+* B+
+* AB-
+* AB+
+
+### Is Universal Donor: No
+
+### Is Universal Recipient: No
+
 ---
 
 ## Blood Type: B+
@@ -193,10 +210,13 @@ foreach (BloodType::cases() as $type) {
 * AB+
 
 ### Can Receive From:
-* B-
 * B+
-* O-
-* O+
+* AB+
+
+### Is Universal Donor: No
+
+### Is Universal Recipient: No
+
 ---
 
 ## Blood Type: AB-
@@ -213,10 +233,13 @@ foreach (BloodType::cases() as $type) {
 * AB+
 
 ### Can Receive From:
-* A-
-* B-
 * AB-
-* O-
+* AB+
+
+### Is Universal Donor: No
+
+### Is Universal Recipient: No
+
 ---
 
 ## Blood Type: AB+
@@ -232,14 +255,12 @@ foreach (BloodType::cases() as $type) {
 * AB+
 
 ### Can Receive From:
-* A-
-* A+
-* B-
-* B+
-* AB-
 * AB+
-* O-
-* O+
+
+### Is Universal Donor: No
+
+### Is Universal Recipient: Yes
+
 ---
 
 ## Blood Type: O-
@@ -262,7 +283,19 @@ foreach (BloodType::cases() as $type) {
 * O+
 
 ### Can Receive From:
+* A-
+* A+
+* B-
+* B+
+* AB-
+* AB+
 * O-
+* O+
+
+### Is Universal Donor: Yes
+
+### Is Universal Recipient: No
+
 ---
 
 ## Blood Type: O+
@@ -281,5 +314,13 @@ foreach (BloodType::cases() as $type) {
 * O+
 
 ### Can Receive From:
-* O-
+* A+
+* B+
+* AB+
 * O+
+
+### Is Universal Donor: No
+
+### Is Universal Recipient: No
+
+---

@@ -24,18 +24,17 @@ $forType = static function (BloodType $type): void {
     }
 
     echo H3. "Can Donate To:\n";
-    foreach (BloodType::cases() as $type) {
-        $toReceive = new Blood($type);
-
-        echo $blood->canDonateTo($toReceive) ? ITEM_PREFIX . "{$toReceive->getType()->value}\n" : '';
+    foreach ($blood->getPossibleRecipients() as $type) {
+        echo ITEM_PREFIX . "{$type->value}\n";
     }
 
     echo H3 . "Can Receive From:\n";
-    foreach (BloodType::cases() as $type) {
-        $toDonate = new Blood($type);
-
-        echo $blood->canReceiveFrom($toDonate) ? ITEM_PREFIX . "{$toDonate->getType()->value}\n" : '';
+    foreach ($blood->getPossibleRecipients() as $type) {
+        echo ITEM_PREFIX . "{$type->value}\n";
     }
+
+    echo H3 . "Is Universal Donor: " . ($blood->isUniversalDonor() ? 'Yes' : 'No') . "\n";
+    echo H3 . "Is Universal Recipient: " . ($blood->isUniversalRecipient() ? 'Yes' : 'No') . "\n\n";
 };
 
 $divider = "---\n";
