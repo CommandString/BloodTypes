@@ -50,9 +50,9 @@ function getMimeFromExtension(string $extensionToFindMimeFor): ?string
 /**
  * @throws InvalidBloodType
  */
-function bloodTypeThrowFrom(string $type): BloodType
+function bloodTypeThrowFrom(string $from): BloodType
 {
-    $type = BloodType::tryFrom(strtoupper($type));
+    $type = BloodType::tryFrom(strtoupper($from));
 
     if ($type === null) {
         throw new InvalidBloodType($type);
