@@ -2,9 +2,12 @@
 
 namespace Common;
 
+use CommandString\Blood\Enums\BloodType;
 use CommandString\Utils\ArrayUtils;
 use Common\Env;
+use Common\Exceptions\InvalidBloodType;
 use HttpSoft\Response\HtmlResponse;
+use function strtoupper;
 
 function render(string $path, array $context = [], int $code = 200): HtmlResponse
 {
@@ -43,4 +46,18 @@ function getMimeFromExtension(string $extensionToFindMimeFor): ?string
     }
 
     return null;
+}
+
+/**
+ * @throws InvalidBloodType
+ */
+function bloodTypeThrowFrom(string $type): BloodType
+{
+    $type = BloodType::tryFrom(strtoupper($type));
+
+    if ($type === null) {
+        throw new InvalidBloodType($type);
+    }
+
+    return $type;
 }

@@ -11,6 +11,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Tnapf\Router\Interfaces\ControllerInterface;
 use Tnapf\Router\Routing\RouteRunner;
 
+use function Common\bloodTypeThrowFrom;
 use function strtoupper;
 
 class Recipients implements ControllerInterface
@@ -23,7 +24,7 @@ class Recipients implements ControllerInterface
         ResponseInterface $response,
         RouteRunner $route
     ): ResponseInterface {
-        $type = BloodType::throwFrom($route->getParameter("type"));
+        $type = bloodTypeThrowFrom($route->getParameter("type"));
 
         $blood = new Blood($type);
 

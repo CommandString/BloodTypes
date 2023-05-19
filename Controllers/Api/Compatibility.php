@@ -23,8 +23,8 @@ class Compatibility implements ControllerInterface
         ResponseInterface $response,
         RouteRunner $route
     ): ResponseInterface {
-        $type1 = BloodType::throwFrom($route->getParameter("type1"));
-        $type2 = BloodType::throwFrom($route->getParameter("type2"));
+        $type1 = bloodTypeThrowFrom($route->getParameter("type1"));
+        $type2 = bloodTypeThrowFrom($route->getParameter("type2"));
 
         $blood1 = new Blood($type1);
         $blood2 = new Blood($type2);

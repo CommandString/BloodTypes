@@ -21,7 +21,7 @@ class Properties implements ControllerInterface
         ResponseInterface $response,
         RouteRunner $route
     ): ResponseInterface {
-        $type = BloodType::throwFrom($route->getParameter("type"));
+        $type = bloodTypeThrowFrom($route->getParameter("type"));
 
         $blood = new Blood($type);
 
