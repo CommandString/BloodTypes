@@ -20,7 +20,7 @@ const betweenTwo = async function () {
         return `
             <div class="item">
                 <i class="inverted ${compatible ? 'green check' : 'red times'} icon"></i>
-                <div class="content">${type1}<i class="angle ${direction} icon"></i>${type2}</div>
+                <div class="content">${type1}<i class="arrow ${direction} icon"></i>${type2}</div>
             </div>
         `;
     };
