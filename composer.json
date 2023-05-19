@@ -23,8 +23,8 @@
         ]
     },
     "scripts": {
-        "cs": "./vendor/bin/phpcs --standard=PSR12 ./Common ./Controllers ./App",
-        "csf": "./vendor/bin/phpcbf --standard=PSR12 ./Common ./Controllers ./App",
+        "cs": "./vendor/bin/phpcs --standard=PSR12 ./Common ./Controllers ./App ./tests",
+        "csf": "./vendor/bin/phpcbf --standard=PSR12 ./Common ./Controllers ./App ./tests",
         "phpunit": "phpunit",
         "phpunit-coverage": "@php -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-html .phpunit.cache/cov-html"
     }

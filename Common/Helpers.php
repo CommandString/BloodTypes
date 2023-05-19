@@ -6,6 +6,7 @@ use CommandString\Blood\Enums\BloodType;
 use CommandString\Utils\ArrayUtils;
 use Common\Exceptions\InvalidBloodType;
 use HttpSoft\Response\HtmlResponse;
+
 use function strtoupper;
 
 function render(string $path, array $context = [], int $code = 200): HtmlResponse
