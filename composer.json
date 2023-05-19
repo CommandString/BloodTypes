@@ -1,6 +1,6 @@
 {
     "name": "commandstring/blood",
-    "description": "A package that does something",
+    "description": "A package for handling blood types",
     "type": "library",
     "license": "MIT",
     "autoload": {
