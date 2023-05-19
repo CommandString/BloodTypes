@@ -55,7 +55,7 @@ function bloodTypeThrowFrom(string $from): BloodType
     $type = BloodType::tryFrom(strtoupper($from));
 
     if ($type === null) {
-        throw new InvalidBloodType($type);
+        throw new InvalidBloodType($from);
     }
 
     return $type;
