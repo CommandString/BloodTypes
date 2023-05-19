@@ -14,7 +14,7 @@ use Tnapf\Router\Router;
 
 use function json_decode;
 
-class testApi extends TestCase
+class TestApi extends TestCase
 {
     protected bool $routesRegistered = false;
     protected Router $router;

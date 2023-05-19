@@ -5,7 +5,7 @@
          cacheDirectory=".phpunit.cache">
     <testsuites>
         <testsuite name="default">
-            <file>tests/testApi.php</file>
+            <file>tests/TestApi.php</file>
         </testsuite>
     </testsuites>
     <coverage />
