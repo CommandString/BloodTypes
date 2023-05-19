@@ -1,5 +1,5 @@
 # BloodTypes
-A composer package for bloodtypes
+A composer package for bloodtypes (website is in the [gui](https://github.com/CommandString/BloodTypes/tree/gui/) branch)
 
 # Installation
 
